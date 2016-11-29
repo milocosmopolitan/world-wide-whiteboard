@@ -103,6 +103,9 @@ window.whiteboard = new window.EventEmitter();
 
     whiteboard.draw = function (start, end, strokeColor, shouldBroadcast) {
 
+
+        console.log('start', start);
+        console.log('end', end);
         // Draw the line between the start and end positions
         // that is colored with the given color.
         ctx.beginPath();
