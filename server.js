@@ -31,7 +31,9 @@ var turing = io.of('/turing');
 
 io.on('connection', function (socket) {
     console.log('A new client has connected!');
-    //console.log(socket);    
+
+
+    console.log('nsp',socket.nsp);
     clients.all.push(socket);
 
     if(clients.all.length > 1) {
@@ -54,33 +56,33 @@ io.on('connection', function (socket) {
     })
 });
 
-turing.on('connection', function (socket) {
-    console.log('This is suppose to be turing');
-    //console.log(socket);    
-    clients.turing.push(socket);
+// turing.on('connection', function (socket) {
+//     console.log('This is suppose to be turing');
+//     //console.log(socket);    
+//     clients.turing.push(socket);
 
-    if(clients.turing.length > 1) {
-    	console.log('/Turing Drawing', drawing);
-    	drawing.turing.forEach(data=>{	    	
-	    	socket.emit('restore', data);
-	    })
-    }
+//     if(clients.turing.length > 1) {
+//     	console.log('/Turing Drawing', drawing);
+//     	drawing.turing.forEach(data=>{	    	
+// 	    	socket.emit('restore', data);
+// 	    })
+//     }
 
-    socket.on('disconnect', function() {
-    	var i = clients.turing.indexOf(socket);
-      	delete clients.turing[i];      	
-    	console.log('user disconnected');            
-   });
+//     socket.on('disconnect', function() {
+//     	var i = clients.turing.indexOf(socket);
+//       	delete clients.turing[i];      	
+//     	console.log('user disconnected');            
+//    });
 
-    socket.on('draw', function(...data){    	
-    	console.log('turing drawing')
-    	let payload = data;
-    	drawing.turing.push(payload);
+//     socket.on('draw', function(...data){    	
+//     	console.log('turing drawing')
+//     	let payload = data;
+//     	drawing.turing.push(payload);
 
-    	//console.log(drawing);
-    	socket.broadcast.emit('draw', ...data);    	
-    })
-});
+//     	//console.log(drawing);
+//     	socket.broadcast.emit('draw', ...data);    	
+//     })
+// });
 
 
 server.listen(1337, function () {
