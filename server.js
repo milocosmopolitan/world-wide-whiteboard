@@ -29,7 +29,7 @@ var turing = io.of('/turing');
 
 
 
-io.on('connection', function (socket) {
+io.on('connection', (socket)=> {
     console.log('A new client has connected!');
 
 
@@ -49,7 +49,7 @@ io.on('connection', function (socket) {
     	console.log('user disconnected');            
    });
 
-    socket.on('draw', function(...data){
+    socket.on('draw', (...data)=>{
     	let payload = data;
     	drawing.default.push(payload);
     	socket.broadcast.emit('draw', ...data);    	
@@ -91,21 +91,21 @@ server.listen(1337, function () {
 
 app.use(express.static(path.join(__dirname, 'browser')));
 
-app.get('/turing', function (req, res) {
+app.get('/turing', (req, res)=> {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-app.get('/', function (req, res) {
+app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 
 
 
-app.get('/grace', function (req, res) {
+app.get('/grace', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-app.get('/kitchen', function (req, res) {
+app.get('/kitchen', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });

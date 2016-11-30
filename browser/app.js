@@ -1,7 +1,7 @@
 console.log(window.location)
 
 
-var socket = window.location.pathname !== '/' ? io(window.location.origin) : io(window.location.pathname);
+//var socket = window.location.pathname !== '/' ? io(window.location.origin) : io(window.location.pathname);
 
 var socket = io(window.location.pathname);
 	socket.on('connect', function(){
